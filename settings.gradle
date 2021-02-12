@@ -1,0 +1,3 @@
+include ':rab'
+include ':app'
+rootProject.name = "RecyclerView Adapter Builder"
