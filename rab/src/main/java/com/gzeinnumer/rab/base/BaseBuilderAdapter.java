@@ -13,6 +13,8 @@ import com.gzeinnumer.rab.helper.BindViewHolder;
 import com.gzeinnumer.rab.helper.BindViewHolderMultiType;
 import com.gzeinnumer.rab.helper.FilterCallBack;
 import com.gzeinnumer.rab.helper.MyDiffUtilsCallBack;
+import com.gzeinnumer.rab.multiType.AdapterCreatorMultiType;
+import com.gzeinnumer.rab.singleType.AdapterCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,7 +133,7 @@ public abstract class BaseBuilderAdapter<T> extends RecyclerView.Adapter<Recycle
             this.viewType = viewType;
         }
 
-        public void bind(T data, BindViewHolder<T> bindViewHolder, int size, int divider) {
+        public void bind(T data, BindViewHolder<T> bindViewHolder, int size, int divider, AdapterCreator<T> adapterCreator) {
             if (divider != -1) {
                 if (getAdapterPosition() == size - 1) {
                     itemRvBinding.layoutDivider.setVisibility(View.GONE);
@@ -139,10 +141,10 @@ public abstract class BaseBuilderAdapter<T> extends RecyclerView.Adapter<Recycle
                     itemRvBinding.layoutDivider.setVisibility(View.VISIBLE);
                 }
             }
-            bindViewHolder.bind(view, data, getAdapterPosition());
+            bindViewHolder.bind(adapterCreator, view, data, getAdapterPosition());
         }
 
-        public void bind(T data, BindViewHolderMultiType<T> bindViewHolderMultiType, int size, int divider) {
+        public void bind(T data, BindViewHolderMultiType<T> bindViewHolderMultiType, int size, int divider, AdapterCreatorMultiType<T> adapterCreatorMultiType) {
             if (divider != -1) {
                 if (getAdapterPosition() == size - 1) {
                     itemRvBinding.layoutDivider.setVisibility(View.GONE);
@@ -150,7 +152,7 @@ public abstract class BaseBuilderAdapter<T> extends RecyclerView.Adapter<Recycle
                     itemRvBinding.layoutDivider.setVisibility(View.VISIBLE);
                 }
             }
-            bindViewHolderMultiType.bind(view, data, getAdapterPosition(), viewType);
+            bindViewHolderMultiType.bind(adapterCreatorMultiType, view, data, getAdapterPosition(), viewType);
         }
     }
 }

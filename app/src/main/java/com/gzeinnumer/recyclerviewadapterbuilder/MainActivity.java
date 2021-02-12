@@ -1,14 +1,14 @@
 package com.gzeinnumer.recyclerviewadapterbuilder;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gzeinnumer.rab.helper.BindViewHolder;
 import com.gzeinnumer.rab.helper.BindViewHolderMultiType;
@@ -50,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 .setList(list)
                 .onBind(new BindViewHolder<MyModel>() {
                     @Override
-                    public void bind(View holder, MyModel data, int position) {
+                    public void bind(AdapterCreator<MyModel> adapter, View holder, MyModel data, int position) {
+                        adapter.notifyDataSetChanged();
+
                         RvItemBinding bindingItem = RvItemBinding.bind(holder);
                         bindingItem.btn.setText(data.getId() + "_" + data.getName());
                         bindingItem.btn.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +136,9 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void bind(View holder, MyModel data, int position, int viewType) {
+                    public void bind(AdapterCreatorMultiType<MyModel> adapter, View holder, MyModel data, int position, int viewType) {
+                        adapter.notifyDataSetChanged();
+
                         if (viewType == TYPE_GENAP) {
                             RvItemGenapBinding bindingItem = RvItemGenapBinding.bind(holder);
                             bindingItem.btn.setText(data.getId() + "_" + data.getName() + "_Genap");
@@ -155,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
                             });
                         }
                     }
+
+
                 })
                 .onFilter(new FilterCallBack<MyModel>() {
                     @Override

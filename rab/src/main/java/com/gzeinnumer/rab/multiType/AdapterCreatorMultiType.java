@@ -77,7 +77,7 @@ public class AdapterCreatorMultiType<T> extends BaseBuilderAdapter<T> {
         }
         if (holder.getItemViewType() != TYPE_EMPTY) {
             if (list.size() > 0) {
-                ((MyHolder<T>) holder).bind(list.get(position), bindViewHolderMultiType, list.size(), divider);
+                ((MyHolder<T>) holder).bind(list.get(position), bindViewHolderMultiType, list.size(), divider, AdapterCreatorMultiType.this);
             }
         }
     }
