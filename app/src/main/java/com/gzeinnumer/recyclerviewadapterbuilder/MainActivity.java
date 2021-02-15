@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 .onBind(new BindViewHolder<MyModel>() {
                     @Override
                     public void bind(AdapterCreator<MyModel> adapter, View holder, MyModel data, int position) {
-                        adapter.notifyDataSetChanged();
+                        //adapter.notifyDataSetChanged();
 
                         RvItemBinding bindingItem = RvItemBinding.bind(holder);
                         bindingItem.btn.setText(data.getId() + "_" + data.getName());
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void bind(AdapterCreatorMultiType<MyModel> adapter, View holder, MyModel data, int position, int viewType) {
-                        adapter.notifyDataSetChanged();
+                        //adapter.notifyDataSetChanged();
 
                         if (viewType == TYPE_GENAP) {
                             RvItemGenapBinding bindingItem = RvItemGenapBinding.bind(holder);

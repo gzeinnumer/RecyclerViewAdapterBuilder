@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-    <a><img src="https://img.shields.io/badge/Version-2.0.0-brightgreen.svg?style=flat"></a>
+    <a><img src="https://img.shields.io/badge/Version-2.0.1-brightgreen.svg?style=flat"></a>
     <a><img src="https://img.shields.io/badge/ID-gzeinnumer-blue.svg?style=flat"></a>
     <a><img src="https://img.shields.io/badge/Java-Suport-green?logo=java&style=flat"></a>
     <a><img src="https://img.shields.io/badge/Kotlin-Suport-green?logo=kotlin&style=flat"></a>
@@ -94,7 +94,9 @@ for (i in 0..9) {
 //setup adapter
 val adapter = AdapterBuilder<MyModel>(R.layout.rv_item)
     .setList(list)
-    .onBind { holder, data,  position ->
+    .onBind { adapter, holder, data,  position ->
+        //adapter.notifyDataSetChanged()
+
         //R.layout.rv_item = RvItemBinding
         val bindingItem = RvItemBinding.bind(holder)
         bindingItem.btn.text = data.id.toString() + "_" + data.name
@@ -147,7 +149,8 @@ val adapter = AdapterBuilderMultiType<MyModel>()
                 TypeViewItem(TYPE_GANJIL, R.layout.rv_item)
         }
 
-        override fun bind(holder: View, data: MyModel, position: Int, viewType: Int) {
+        override fun bind(adapter: AdapterCreatorMultiType<MyModel>, holder: View, data: MyModel, position: Int, viewType: Int) {
+            //adapter.notifyDataSetChanged()
             if (viewType == TYPE_GENAP) {
                 //R.layout.rv_item_genap = RvItemGenapBinding
                 val bindingItem = RvItemGenapBinding.bind(holder)
@@ -293,6 +296,8 @@ Sample APP, just clone it [Java](https://github.com/gzeinnumer/RecyclerViewAdapt
   - Add Multi Type
 - **2.0.0**
   - Support SDK 16
+- **2.0.1**
+  - Adapter CallBack
 
 ---
 # Contribution
