@@ -72,6 +72,10 @@ public class AdapterCreator<T> extends BaseBuilderAdapter<T> {
             if (list.size() > 0 && rvItemAdapter != -1) {
                 ((MyHolder<T>) holder).bind(list.get(position), bindViewHolder, list.size(), divider, AdapterCreator.this);
             }
+        } else if (holder.getItemViewType() == TYPE_EMPTY) {
+            if (bindViewHolderEmpty != null) {
+                ((ViewHolderEmpty) holder).bind(bindViewHolderEmpty);
+            }
         }
     }
 

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gzeinnumer.rab.databinding.DefaultItemRvBinding;
 import com.gzeinnumer.rab.helper.BindViewHolder;
+import com.gzeinnumer.rab.helper.BindViewHolderEmpty;
 import com.gzeinnumer.rab.helper.BindViewHolderMultiType;
 import com.gzeinnumer.rab.helper.FilterCallBack;
 import com.gzeinnumer.rab.helper.MyDiffUtilsCallBack;
@@ -61,6 +62,13 @@ public abstract class BaseBuilderAdapter<T> extends RecyclerView.Adapter<Recycle
 
     public void setEmptyLayout(int emptyLayout) {
         this.emptyLayout = emptyLayout;
+    }
+
+    protected BindViewHolderEmpty bindViewHolderEmpty;
+
+    public void setEmptyLayout(int emptyLayout, BindViewHolderEmpty bindViewHolderEmpty) {
+        this.emptyLayout = emptyLayout;
+        this.bindViewHolderEmpty = bindViewHolderEmpty;
     }
 
     public void setAnimation(int animation) {
@@ -116,8 +124,15 @@ public abstract class BaseBuilderAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     public static class ViewHolderEmpty extends RecyclerView.ViewHolder {
+        private final View view;
+
         public ViewHolderEmpty(@NonNull View itemView) {
             super(itemView);
+            this.view = itemView.getRootView();
+        }
+
+        public void bind(BindViewHolderEmpty bindViewHolderEmpty) {
+            bindViewHolderEmpty.bind(view);
         }
     }
 
