@@ -241,7 +241,7 @@ new AdapterBuilder<MyModel>(R.layout.rv_item)
 AdapterBuilder<MyModel>(R.layout.rv_item)
     .setCustomNoItem(R.layout.custom_empty_item)
 ```
-You can Bind view to
+You can Bind Empty item View to
 ```java
 new AdapterBuilder<MyModel>(R.layout.rv_item)
     .setCustomNoItem(R.layout.custom_empty_item, new BindViewHolderEmpty() {
