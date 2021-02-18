@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-    <a><img src="https://img.shields.io/badge/Version-2.0.1-brightgreen.svg?style=flat"></a>
+    <a><img src="https://img.shields.io/badge/Version-2.2.0-brightgreen.svg?style=flat"></a>
     <a><img src="https://img.shields.io/badge/ID-gzeinnumer-blue.svg?style=flat"></a>
     <a><img src="https://img.shields.io/badge/Java-Suport-green?logo=java&style=flat"></a>
     <a><img src="https://img.shields.io/badge/Kotlin-Suport-green?logo=kotlin&style=flat"></a>
@@ -241,6 +241,39 @@ new AdapterBuilder<MyModel>(R.layout.rv_item)
 AdapterBuilder<MyModel>(R.layout.rv_item)
     .setCustomNoItem(R.layout.custom_empty_item)
 ```
+You can Bind view to
+```java
+new AdapterBuilder<MyModel>(R.layout.rv_item)
+    .setCustomNoItem(R.layout.custom_empty_item, new BindViewHolderEmpty() {
+        @Override
+        public void bind(View holder) {
+            //R.layout.custom_empty_item -> CustomEmptyItemBinding
+            CustomEmptyItemBinding itemBinding = CustomEmptyItemBinding.bind(holder);
+            itemBinding.img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "Tekan", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    })
+```
+```kotlin
+new AdapterBuilder<MyModel>(R.layout.rv_item)
+    .setCustomNoItem(R.layout.custom_empty_item, new BindViewHolderEmpty() {
+        @Override
+        public void bind(View holder) {
+            //R.layout.custom_empty_item -> CustomEmptyItemBinding
+            CustomEmptyItemBinding itemBinding = CustomEmptyItemBinding.bind(holder);
+            itemBinding.img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "Tekan", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    })
+```
 Sample code [custom_empty_item.xml](https://github.com/gzeinnumer/RecyclerViewAdapterBuilder/blob/master/app/src/main/res/layout/custom_empty_item.xml)
 <p align="center">
   <img src="https://github.com/gzeinnumer/RecyclerViewAdapterBuilder/blob/master/preview/example3.jpg" width="300"/>
@@ -298,6 +331,8 @@ Sample APP, just clone it [Java](https://github.com/gzeinnumer/MylibRecyclerView
   - Support SDK 16
 - **2.0.1**
   - Adapter CallBack
+- **2.2.0**
+  - No Item CallBack
 
 ---
 # Contribution

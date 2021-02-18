@@ -1,6 +1,7 @@
 package com.gzeinnumer.rab.singleType;
 
 import com.gzeinnumer.rab.helper.BindViewHolder;
+import com.gzeinnumer.rab.helper.BindViewHolderEmpty;
 
 import java.util.List;
 
@@ -13,6 +14,11 @@ public class AdapterBuilder<T> {
 
     public AdapterBuilder<T> setCustomNoItem(int emptyViewContent) {
         adapterCreator.setEmptyLayout(emptyViewContent);
+        return this;
+    }
+
+    public AdapterBuilder<T> setCustomNoItem(int emptyViewContent, BindViewHolderEmpty bindViewHolderEmpty) {
+        adapterCreator.setEmptyLayout(emptyViewContent, bindViewHolderEmpty);
         return this;
     }
 

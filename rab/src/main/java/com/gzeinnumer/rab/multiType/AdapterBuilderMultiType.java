@@ -1,5 +1,6 @@
 package com.gzeinnumer.rab.multiType;
 
+import com.gzeinnumer.rab.helper.BindViewHolderEmpty;
 import com.gzeinnumer.rab.helper.BindViewHolderMultiType;
 
 import java.util.List;
@@ -13,6 +14,11 @@ public class AdapterBuilderMultiType<T> {
 
     public AdapterBuilderMultiType<T> setCustomNoItem(int emptyViewContent) {
         adapterCreatorMultiType.setEmptyLayout(emptyViewContent);
+        return this;
+    }
+
+    public AdapterBuilderMultiType<T> setCustomNoItem(int emptyViewContent, BindViewHolderEmpty bindViewHolderEmpty) {
+        adapterCreatorMultiType.setEmptyLayout(emptyViewContent, bindViewHolderEmpty);
         return this;
     }
 

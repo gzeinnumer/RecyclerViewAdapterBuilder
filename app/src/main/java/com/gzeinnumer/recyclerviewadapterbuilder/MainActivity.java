@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gzeinnumer.rab.helper.BindViewHolder;
+import com.gzeinnumer.rab.helper.BindViewHolderEmpty;
 import com.gzeinnumer.rab.helper.BindViewHolderMultiType;
 import com.gzeinnumer.rab.helper.FilterCallBack;
 import com.gzeinnumer.rab.model.TypeViewItem;
@@ -19,6 +20,7 @@ import com.gzeinnumer.rab.multiType.AdapterCreatorMultiType;
 import com.gzeinnumer.rab.singleType.AdapterBuilder;
 import com.gzeinnumer.rab.singleType.AdapterCreator;
 import com.gzeinnumer.recyclerviewadapterbuilder.databinding.ActivityMainBinding;
+import com.gzeinnumer.recyclerviewadapterbuilder.databinding.CustomEmptyItemBinding;
 import com.gzeinnumer.recyclerviewadapterbuilder.databinding.RvItemBinding;
 import com.gzeinnumer.recyclerviewadapterbuilder.databinding.RvItemGenapBinding;
 
@@ -40,11 +42,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void typeSingle() {
         List<MyModel> list = new ArrayList<>();
-        for (int i = 0; i < 23; i++) {
-            list.add(new MyModel(i, "Data Ke " + (i + 1)));
-        }
+//        for (int i = 0; i < 23; i++) {
+//            list.add(new MyModel(i, "Data Ke " + (i + 1)));
+//        }
         AdapterCreator<MyModel> adapter = new AdapterBuilder<MyModel>(R.layout.rv_item)
-                .setCustomNoItem(R.layout.custom_empty_item)
+                .setCustomNoItem(R.layout.custom_empty_item, new BindViewHolderEmpty() {
+                    @Override
+                    public void bind(View holder) {
+                        CustomEmptyItemBinding itemBinding = CustomEmptyItemBinding.bind(holder);
+                        itemBinding.img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(MainActivity.this, "Tekan", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                })
                 .setDivider(R.layout.custom_divider)
                 .setAnimation(R.anim.anim_two)
                 .setList(list)
@@ -114,11 +127,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void typeMulti() {
         List<MyModel> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(new MyModel(i, "Data Ke " + (i + 1)));
-        }
+//        for (int i = 0; i < 10; i++) {
+//            list.add(new MyModel(i, "Data Ke " + (i + 1)));
+//        }
         AdapterCreatorMultiType<MyModel> adapter = new AdapterBuilderMultiType<MyModel>()
-                .setCustomNoItem(R.layout.custom_empty_item)
+                .setCustomNoItem(R.layout.custom_empty_item, new BindViewHolderEmpty() {
+                    @Override
+                    public void bind(View holder) {
+                        CustomEmptyItemBinding itemBinding = CustomEmptyItemBinding.bind(holder);
+                        itemBinding.img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(MainActivity.this, "Tekan", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                })
                 .setDivider(R.layout.custom_divider)
 //                .setAnimation(R.anim.anim_two)
                 .setList(list)
@@ -181,17 +205,17 @@ public class MainActivity extends AppCompatActivity {
         binding.rv.hasFixedSize();
         binding.rv.setAdapter(adapter);
 
-        new CountDownTimer(5000, 1000) {
-            public void onTick(long millisUntilFinished) {
-            }
-
-            public void onFinish() {
-                for (int i = 10; i < 100; i++) {
-                    list.add(new MyModel(i, "Data Ke " + (i + 1)));
-                }
-                adapter.setList(list);
-            }
-        }.start();
+//        new CountDownTimer(5000, 1000) {
+//            public void onTick(long millisUntilFinished) {
+//            }
+//
+//            public void onFinish() {
+//                for (int i = 10; i < 100; i++) {
+//                    list.add(new MyModel(i, "Data Ke " + (i + 1)));
+//                }
+//                adapter.setList(list);
+//            }
+//        }.start();
 
         binding.ed.addTextChangedListener(new TextWatcher() {
             @Override
