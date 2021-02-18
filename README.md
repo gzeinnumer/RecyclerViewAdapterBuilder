@@ -259,20 +259,12 @@ new AdapterBuilder<MyModel>(R.layout.rv_item)
     })
 ```
 ```kotlin
-new AdapterBuilder<MyModel>(R.layout.rv_item)
-    .setCustomNoItem(R.layout.custom_empty_item, new BindViewHolderEmpty() {
-        @Override
-        public void bind(View holder) {
-            //R.layout.custom_empty_item -> CustomEmptyItemBinding
-            CustomEmptyItemBinding itemBinding = CustomEmptyItemBinding.bind(holder);
-            itemBinding.img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "Tekan", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    })
+.setCustomNoItem(R.layout.custom_empty_item) { holder -> //rv_item = RvItemBinding
+    val bindingItem = CustomEmptyItemBinding.bind(holder)
+    bindingItem.img.setOnClickListener {
+        Toast.makeText(this@MainActivity, "tekan", Toast.LENGTH_SHORT).show()
+    }
+}
 ```
 Sample code [custom_empty_item.xml](https://github.com/gzeinnumer/RecyclerViewAdapterBuilder/blob/master/app/src/main/res/layout/custom_empty_item.xml)
 <p align="center">
