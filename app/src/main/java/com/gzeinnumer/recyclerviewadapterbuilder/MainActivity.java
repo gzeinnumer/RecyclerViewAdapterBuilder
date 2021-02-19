@@ -36,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        typeSingle();
-        typeMulti();
+        typeSingle();
+//        typeMulti();
     }
 
     private void typeSingle() {
         List<MyModel> list = new ArrayList<>();
-//        for (int i = 0; i < 23; i++) {
-//            list.add(new MyModel(i, "Data Ke " + (i + 1)));
-//        }
+        for (int i = 0; i < 23; i++) {
+            list.add(new MyModel(i, "Data Ke " + (i + 1)));
+        }
         AdapterCreator<MyModel> adapter = new AdapterBuilder<MyModel>(R.layout.rv_item)
                 .setCustomNoItem(R.layout.custom_empty_item, new BindViewHolderEmpty() {
                     @Override
@@ -127,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void typeMulti() {
         List<MyModel> list = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            list.add(new MyModel(i, "Data Ke " + (i + 1)));
-//        }
+        for (int i = 0; i < 10; i++) {
+            list.add(new MyModel(i, "Data Ke " + (i + 1)));
+        }
         AdapterCreatorMultiType<MyModel> adapter = new AdapterBuilderMultiType<MyModel>()
                 .setCustomNoItem(R.layout.custom_empty_item, new BindViewHolderEmpty() {
                     @Override
@@ -205,17 +205,17 @@ public class MainActivity extends AppCompatActivity {
         binding.rv.hasFixedSize();
         binding.rv.setAdapter(adapter);
 
-//        new CountDownTimer(5000, 1000) {
-//            public void onTick(long millisUntilFinished) {
-//            }
-//
-//            public void onFinish() {
-//                for (int i = 10; i < 100; i++) {
-//                    list.add(new MyModel(i, "Data Ke " + (i + 1)));
-//                }
-//                adapter.setList(list);
-//            }
-//        }.start();
+        new CountDownTimer(5000, 1000) {
+            public void onTick(long millisUntilFinished) {
+            }
+
+            public void onFinish() {
+                for (int i = 10; i < 100; i++) {
+                    list.add(new MyModel(i, "Data Ke " + (i + 1)));
+                }
+                adapter.setList(list);
+            }
+        }.start();
 
         binding.ed.addTextChangedListener(new TextWatcher() {
             @Override
