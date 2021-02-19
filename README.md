@@ -82,7 +82,7 @@ Read More For Viewbinding [Java](https://github.com/gzeinnumer/ViewBindingExampl
 
 ### Make Builder Single Type
 
-**Note** [rv_item.xml](https://github.com/gzeinnumer/RecyclerViewAdapterBuilder/blob/master/app/src/main/res/layout/rv_item.xml) should start with `LinearLayout` Parent/ViewGroup.
+**Note** [rv_item.xml](https://github.com/gzeinnumer/RecyclerViewAdapterBuilder/blob/master/app/src/main/res/layout/rv_item.xml) should start with `LinearLayout` as Parent/ViewGroup.
 
 > Java [**See Code**](https://gist.github.com/gzeinnumer/2b51745431b47ea3516dc11c90e3ea2b)
 
